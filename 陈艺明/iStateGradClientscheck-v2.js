@@ -19,7 +19,7 @@ for (let i = 0; i < dataArr.length / 2; i++) {
 
 
     sleep(3000);
-    text("户号").click();
+    text("户号 ").click();
     sleep(3000);
     className("android.widget.EditText").depth(16).findOne().setText(sericalNo);
     sleep(7000);
