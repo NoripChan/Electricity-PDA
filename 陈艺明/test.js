@@ -1,4 +1,38 @@
 sleep(2000);
-console.log("7671680018", "24942-02", "5706030330", "2496102", "5706030331", "2496102", "5706030332", "2496102", "5706030333", "2496102", "7671680089", "24961-03", "5706028739", "2485103", "5706028740", "2485001", "5706028741", "2486102", "5706028801", "2486302", "5706028802", "2486302", "5706028803", "2486302", "5706028809", "2485001", "5706028810", "2485001", "5706028811", "2485001", "5706028812", "2485001", "5706028813", "2485001", "5706028814", "2485001", "5706028804", "2486302", "5706028805", "2486302", "5706028806", "2486302", "5706028807", "2486302", "5706028808", "2486302", "5706030873", "24864-02", "7671657250", "24851-03", "7671636675", "24864-01", "7671671658", "24851-03", "7671671661", "24852-01", "7671671674", "24861-02", "7671671687", "24862-02");
+
+let readRilePath = files.cwd() + "/" + "data.txt", writedFilePath = files.cwd() + "/" + "data.txt";
+let sericalNo;
+let boxerNum ;
+let item = "   ", arr = [], arrData = [];
+console.log(readRilePath);
+console.log(files.isFile(readRilePath));
+let file = open(readRilePath, "r", "utf-8");
+
+do {
+    item = file.readline();
+
+    if (item !== null) {
+        item = item.trim();
+        arr = item.split(/\s+/)
+        console.log(item,arr);
+        arrData.push(arr[0],arr[1]);
+
+    };
+
+} while (item);
+console.log(arrData);
+file.close();
+
+file = files.open(writedFilePath,"w","utf-8");
+console.log(files.isFile(readRilePath));
+console.log(arrData.length);
+for (let i = 0; i < arrData.length / 2; i++) {
+    file.writeline(arrData[i * 2] + "     " + arrData[i * 2 + 1] )
+
+};
+file.close ();
+
+
+
 
 

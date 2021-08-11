@@ -1,34 +1,9 @@
-sleep(2000);
-console.show();
-var readRilePath = files.cwd() + "/" + "data.txt", writedFilePath = files.cwd() + "/" + "data.txt";
-var sericalNo;
-var boxerNum;
-var item = "   ", arr = [], arrData = [], tempArr = [];
-console.log(readRilePath);
-console.log(files.isFile(readRilePath));
-var file = open(readRilePath, "r", "utf-8");
-
-do {
-    item = file.readline();
-
-    if (item !== null) {
-        item = item.trim();
-        arr = item.split(/\s+/)
-        console.log(item, arr);
-        arrData.push(arr[0], arr[1]);
-        tempArr.push(arr[0], arr[1]);
-    };
-
-} while (item);
-console.log(arrData);
-file.close();
+const dataArr = [];
 
 
-for (let i = 0; i < arrData.length / 2; i++) {
-    sericalNo = arrData[i * 2];
-    boxerNum = arrData[i * 2 + 1];
-    tempArr.pop();
-    tempArr.pop();
+for (let i = 0; i < dataArr.length / 2; i++) {
+    let sericalNo = dataArr[i * 2];
+    let boxerNum = dataArr[i * 2 + 1];
     let intervalTime = Math.ceil(Math.random() * 10) * 2000 + 5000;
 
 
@@ -50,17 +25,9 @@ for (let i = 0; i < arrData.length / 2; i++) {
     text("确定").click();
     sleep(14000);
     if (text("生成普查工单").exists()) {
-        
+        console.show();
         console.log("服务器反映异常或者存在普查工单重复提交现象，请重启APP!");
         sleep(4000);
-        file = files.open(writedFilePath, "w", "utf-8");
-        console.log(files.isFile(readRilePath));
-        console.log(tempArr.length);
-        for (let i = 0; i < tempArr.length / 2; i++) {
-            file.writeline(tempArr[i * 2] + "     " + tempArr[i * 2 + 1])
-
-        };
-        file.close();
         exit();
     };
 
@@ -130,18 +97,11 @@ for (let i = 0; i < arrData.length / 2; i++) {
         text("提交").click();
         sleep(Math.ceil(intervalTime / 2));
     } while (text("提交").exists());
-
+    
     sleep(Math.ceil(intervalTime / 2));
-    file = files.open(writedFilePath, "w", "utf-8");
-    console.log(files.isFile(readRilePath));
-    console.log(tempArr.length);
-    for (let i = 0; i < tempArr.length / 2; i++) {
-        file.writeline(tempArr[i * 2] + "     " + tempArr[i * 2 + 1])
-    };
-    file.close();
     console.log(intervalTime, text("提交").exists(), sericalNo);
 
 }
-console.log("完成！");
+console.log ("完成！");
 
 
